@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jardel Kerr — Mobile Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="topbar">
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+      <div class="bars">
+        <div class="bar" style="height:8px"></div>
+        <div class="bar" style="height:12px"></div>
+        <div class="bar" style="height:5px"></div>
+      </div>
+      <span id="musicLabel">Play music</span>
+    </button>
+    <audio id="bgMusic" loop>
+      <source src="music/bg.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <main class="site">
+
+    <section class="hero">
+      <div class="hero-photo">
+        <img src="images/photo.jpg" alt="Jardel Kerr" />
+      </div>
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1 class="hero-name">Jardel Kerr<span>.</span></h1>
+      <p class="hero-sub">Mobile engineer building Android &amp; Flutter apps. I care about craft, performance, and products that feel good to use.</p>
+      <div class="socials">
+        <a href="https://github.com/YOUR_USERNAME" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank">LinkedIn</a>
+        <a href="mailto:YOUR_EMAIL">Email</a>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <p class="section-label">Projects</p>
+    <div class="projects">
+      <div class="project-row">
+        <div class="project-info">
+          <span class="project-name">JournalCapture</span>
+          <span class="project-desc">Privacy-first journaling with AI reflection</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">KMM</span>
+          <span class="tag">Compose Multiplatform</span>
+          <span class="tag">Anthropic API</span>
+        </div>
+      </div>
+      <div class="project-row">
+        <div class="project-info">
+          <span class="project-name">Unworn</span>
+          <span class="project-desc">AI-powered garment reimagining tool</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Gemini</span>
+          <span class="tag">Clean Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer">
+      <div class="toggle-row">
+        <button class="toggle-btn active" onclick="switchView('work', this)">Work</button>
+        <button class="toggle-btn" onclick="switchView('personal', this)">Personal</button>
+      </div>
+
+      <div id="view-work">
+        <p class="section-label">Experience</p>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div>
+              <p class="exp-company">Kody</p>
+              <p class="exp-role">Mobile Engineer · Kotlin · Jetpack Compose · Fintech</p>
+            </div>
+          </div>
+          <div class="exp-item">
+            <div class="exp-dot"></div>
+            <div>
+              <p class="exp-company">TeamSportz</p>
+              <p class="exp-role">Mobile Engineer · Flutter · Firebase · Real-time</p>
+            </div>
+          </div>
+        </div>
+        <div class="spacer">
+          <p class="section-label">Toolkit</p>
+          <div class="toolkit">
+            <span class="tag">Kotlin</span>
+            <span class="tag">Jetpack Compose</span>
+            <span class="tag">Flutter</span>
+            <span class="tag">KMM</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">WebSocket</span>
+            <span class="tag">StateFlow</span>
+            <span class="tag">Ktor</span>
+            <span class="tag">SQLDelight</span>
+            <span class="tag">Koin</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="view-personal" class="hidden">
+        <p class="section-label">Now playing</p>
+        <div class="now-playing">
+          <div class="status-dot-wrap">
+            <span class="status-dot"></span>
+          </div>
+          <div class="now-playing-info">
+            <p class="now-playing-track">Song title</p>
+            <p class="now-playing-artist">Artist name</p>
+          </div>
+          <a class="now-playing-link" href="#" target="_blank" rel="noopener">Open in Spotify</a>
+        </div>
+
+        <div class="spacer">
+          <p class="section-label">Playlists &amp; albums</p>
+          <p class="section-hint">Connect your Spotify playlists below.</p>
+          <div class="spotify-embeds">
+            <!-- Replace src with your Spotify embed URLs -->
+            <!-- Example: https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID -->
+            <iframe style="border-radius:12px" src="https://open.spotify.com/playlist/6ijbMvFYRKqU6fIZLTjbtF?si=bbdb94d22f1546ba" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify playlist"></iframe>
+          </div>
+        </div>
+
+        <div class="spacer">
+          <p class="section-label">Reading</p>
+          <div class="book-list">
+            <div class="book-row">
+              <div class="book-spine" style="background:#534AB7;"></div>
+              <div>
+                <p class="book-title">The Artist's Way</p>
+                <p class="book-author">Julia Cameron</p>
+              </div>
+              <span class="book-status reading">reading</span>
+            </div>
+            <div class="book-row">
+              <div class="book-spine" style="background:#993C1D;"></div>
+              <div>
+                <p class="book-title">Book title</p>
+                <p class="book-author">Author</p>
+              </div>
+              <span class="book-status">to read</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="spacer">
+          <p class="section-label">Games I play</p>
+          <div class="games-grid">
+            <div class="game-card">
+              <p class="game-title">Game title</p>
+              <p class="game-platform">Platform</p>
+            </div>
+            <div class="game-card">
+              <p class="game-title">Game title</p>
+              <p class="game-platform">Platform</p>
+            </div>
+            <div class="game-card">
+              <p class="game-title">Game title</p>
+              <p class="game-platform">Platform</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <footer class="footer">
+      <p class="footer-cta">Let's build something.</p>
+      <div class="footer-links">
+        <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>
+        <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank">LinkedIn</a>
+        <a href="https://github.com/YOUR_USERNAME" target="_blank">GitHub</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Jardel Kerr</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function switchView(view, btn) {
+      document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-work').classList.toggle('hidden', view !== 'work');
+      document.getElementById('view-personal').classList.toggle('hidden', view !== 'personal');
+    }
+
+    function toggleMusic() {
+      const audio = document.getElementById('bgMusic');
+      const btn = document.getElementById('musicBtn');
+      const label = document.getElementById('musicLabel');
+      if (audio.paused) {
+        audio.play().catch(() => {});
+        btn.classList.add('playing');
+        label.textContent = 'Now playing';
+      } else {
+        audio.pause();
+        btn.classList.remove('playing');
+        label.textContent = 'Play music';
+      }
+    }
+  </script>
+
+</body>
+</html>
