@@ -252,11 +252,47 @@ body {
 .game-title { font-size: 0.85rem; font-weight: 500; color: #e0e0e0; }
 .game-platform { font-size: 0.72rem; color: #555; margin-top: 3px; }
 
-.footer { padding: 2rem 0 0; }
-.footer-cta { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
-.footer-links { display: flex; gap: 1.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
-.footer-links a { font-size: 0.85rem; color: #555; text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: #f0f0f0; }
+.footer {
+  padding: 5rem 0 3rem;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.footer-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  margin-bottom: 1rem;
+}
+.footer-body {
+  font-size: 0.95rem;
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.footer-contact-label {
+  font-size: 0.7rem;
+  color: #555;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+.footer-icons a {
+  color: #666;
+  transition: color 0.2s;
+}
+.footer-icons a:hover {
+  color: #f0f0f0;
+}
+.footer-icons svg {
+  display: block;
+}
 .footer-copy { font-size: 0.75rem; color: #333; margin-top: 2rem; }
 
 .hidden { display: none; }
