@@ -167,6 +167,15 @@ body {
 .exp-item { display: flex; gap: 1rem; align-items: flex-start; }
 .exp-dot { width: 7px; height: 7px; border-radius: 50%; background: #333; margin-top: 5px; flex-shrink: 0; }
 .exp-company { font-size: 0.95rem; font-weight: 500; color: #e0e0e0; }
+.exp-link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  margin-left: 6px;
+  transition: color 0.2s;
+}
+.exp-link:hover { color: #f0f0f0; }
 .exp-role { font-size: 0.8rem; color: #555; margin-top: 3px; }
 
 .toolkit { display: flex; flex-wrap: wrap; gap: 8px; }
