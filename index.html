@@ -48,7 +48,7 @@
 
     <p class="section-label" id="projects">Projects</p>
     <div class="projects">
-      <div class="project-row">
+      <a class="project-row" href="projects/journalcapture.html">
         <div class="project-info">
           <span class="project-name">JournalCapture</span>
           <span class="project-desc">Photo capture and privacy-first journaling app with AI reflection</span>
@@ -58,8 +58,8 @@
           <span class="tag">Compose Multiplatform</span>
           <span class="tag">Anthropic API</span>
         </div>
-      </div>
-      <div class="project-row">
+      </a>
+      <a class="project-row" href="projects/unworn.html">
         <div class="project-info">
           <span class="project-name">Unworn</span>
           <span class="project-desc">AI-powered garment reimagining tool</span>
@@ -69,7 +69,7 @@
           <span class="tag">Gemini</span>
           <span class="tag">Clean Architecture</span>
         </div>
-      </div>
+      </a>
     </div>
 
     <div class="spacer" id="view-section">
@@ -80,21 +80,21 @@
           <div class="exp-item">
             <div class="exp-dot"></div>
             <div>
-              <p class="exp-company">Kody <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.kody.kodyu" target="_blank" rel="noopener">KodyU ↗</a></p>
+              <p class="exp-company"><a class="exp-link" href="projects/kody.html">Kody</a> <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.kody.kodyu" target="_blank" rel="noopener">KodyU ↗</a></p>
               <p class="exp-role">Mobile Engineer · Kotlin · Jetpack Compose · Fintech</p>
             </div>
           </div>
           <div class="exp-item">
             <div class="exp-dot"></div>
             <div>
-              <p class="exp-company">Capital On Tap <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.cot.app" target="_blank" rel="noopener">Android ↗</a> <a class="exp-link" href="https://apps.apple.com/gb/app/capital-on-tap/id1398201114" target="_blank" rel="noopener">iOS ↗</a></p>
+              <p class="exp-company"><a class="exp-link" href="projects/capitalontap.html">Capital On Tap</a> <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.cot.app" target="_blank" rel="noopener">Android ↗</a> <a class="exp-link" href="https://apps.apple.com/gb/app/capital-on-tap/id1398201114" target="_blank" rel="noopener">iOS ↗</a></p>
               <p class="exp-role">Mobile Engineer · Flutter · Fintech</p>
             </div>
           </div>
           <div class="exp-item">
             <div class="exp-dot"></div>
             <div>
-              <p class="exp-company">TeamSportz <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.teamsportz.store" target="_blank" rel="noopener">Android ↗</a> <a class="exp-link" href="https://apps.apple.com/us/app/teamsportz-play/id1541456437" target="_blank" rel="noopener">iOS ↗</a></p>
+              <p class="exp-company"><a class="exp-link" href="projects/teamsportz.html">TeamSportz</a> <a class="exp-link" href="https://play.google.com/store/apps/details?id=com.teamsportz.store" target="_blank" rel="noopener">Android ↗</a> <a class="exp-link" href="https://apps.apple.com/us/app/teamsportz-play/id1541456437" target="_blank" rel="noopener">iOS ↗</a></p>
               <p class="exp-role">Mobile Engineer · Flutter · Firebase · Real-time</p>
             </div>
           </div>
@@ -257,14 +257,16 @@
       slider.style.width = activeBtn.offsetWidth + 'px';
     }
 
-    function switchViewNav(view, btn) {
+    function setActiveNav(btn) {
       document.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       positionSlider(btn);
+    }
 
+    function switchViewNav(view, btn) {
+      setActiveNav(btn);
       document.getElementById('view-work').classList.toggle('hidden', view !== 'work');
       document.getElementById('view-personal').classList.toggle('hidden', view !== 'personal');
-
       const section = document.getElementById('view-section');
       if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -274,15 +276,54 @@
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+    // Scroll-based nav tracking
+    function updateNavOnScroll() {
+      const pills = document.querySelectorAll('.nav-pill');
+      const projectsEl = document.getElementById('projects');
+      const viewSection = document.getElementById('view-section');
+      const workView = document.getElementById('view-work');
+      const personalView = document.getElementById('view-personal');
+
+      if (!projectsEl || !viewSection) return;
+
+      const scrollY = window.scrollY + window.innerHeight * 0.4;
+      const projectsTop = projectsEl.offsetTop;
+      const viewTop = viewSection.offsetTop;
+
+      if (scrollY >= viewTop) {
+        // We're in the work/personal section
+        if (!personalView.classList.contains('hidden')) {
+          pills.forEach(p => p.classList.remove('active'));
+          pills[2].classList.add('active');
+          positionSlider(pills[2]);
+        } else {
+          pills.forEach(p => p.classList.remove('active'));
+          pills[1].classList.add('active');
+          positionSlider(pills[1]);
+        }
+      } else if (scrollY >= projectsTop) {
+        pills.forEach(p => p.classList.remove('active'));
+        pills[0].classList.add('active');
+        positionSlider(pills[0]);
+      } else {
+        // Above projects — default to Work
+        pills.forEach(p => p.classList.remove('active'));
+        pills[1].classList.add('active');
+        positionSlider(pills[1]);
+      }
+    }
+
     // Init slider position on load
     window.addEventListener('load', () => {
       const active = document.querySelector('.nav-pill.active');
       positionSlider(active);
+      updateNavOnScroll();
     });
     window.addEventListener('resize', () => {
       const active = document.querySelector('.nav-pill.active');
       positionSlider(active);
     });
+    window.addEventListener('scroll', updateNavOnScroll, { passive: true });
 
     function toggleMusic() {
       const audio = document.getElementById('bgMusic');

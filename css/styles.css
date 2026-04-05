@@ -129,6 +129,9 @@ body {
   background: #0e0e0e;
   transition: background 0.15s;
   flex-wrap: wrap;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 .project-row:hover { background: #141414; }
 .project-info { display: flex; flex-direction: column; gap: 4px; }
