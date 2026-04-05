@@ -38,13 +38,15 @@
       <div class="socials">
         <a href="https://github.com/JardelK467" target="_blank">GitHub</a>
         <a href="https://www.linkedin.com/in/jardel-kerr-924820162/" target="_blank">LinkedIn</a>
+        <a href="https://substack.com/@jardelkerr" target="_blank">Substack</a>
+        <a href="https://medium.com/@kerrjardel" target="_blank">Medium</a>
         <a href="mailto:kerrjardel@gmail.com">Email</a>
       </div>
     </section>
 
     <hr class="divider" />
 
-    <p class="section-label">Projects</p>
+    <p class="section-label" id="projects">Projects</p>
     <div class="projects">
       <div class="project-row">
         <div class="project-info">
@@ -70,11 +72,7 @@
       </div>
     </div>
 
-    <div class="spacer">
-      <div class="toggle-row">
-        <button class="toggle-btn active" onclick="switchView('work', this)">Work</button>
-        <button class="toggle-btn" onclick="switchView('personal', this)">Personal</button>
-      </div>
+    <div class="spacer" id="view-section">
 
       <div id="view-work">
         <p class="section-label">Experience</p>
@@ -235,6 +233,14 @@
 
   </main>
 
+  <!-- Floating bottom nav -->
+  <nav class="floating-nav" id="floatingNav">
+    <button class="nav-pill" onclick="scrollToSection('projects')">Projects</button>
+    <button class="nav-pill active" onclick="switchViewNav('work', this)">Work</button>
+    <button class="nav-pill" onclick="switchViewNav('personal', this)">Personal</button>
+    <div class="nav-slider" id="navSlider"></div>
+  </nav>
+
   <script>
     function switchView(view, btn) {
       document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
@@ -242,6 +248,41 @@
       document.getElementById('view-work').classList.toggle('hidden', view !== 'work');
       document.getElementById('view-personal').classList.toggle('hidden', view !== 'personal');
     }
+
+    // Floating nav
+    function positionSlider(activeBtn) {
+      const slider = document.getElementById('navSlider');
+      if (!activeBtn || !slider) return;
+      slider.style.left = activeBtn.offsetLeft + 'px';
+      slider.style.width = activeBtn.offsetWidth + 'px';
+    }
+
+    function switchViewNav(view, btn) {
+      document.querySelectorAll('.nav-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      positionSlider(btn);
+
+      document.getElementById('view-work').classList.toggle('hidden', view !== 'work');
+      document.getElementById('view-personal').classList.toggle('hidden', view !== 'personal');
+
+      const section = document.getElementById('view-section');
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Init slider position on load
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.nav-pill.active');
+      positionSlider(active);
+    });
+    window.addEventListener('resize', () => {
+      const active = document.querySelector('.nav-pill.active');
+      positionSlider(active);
+    });
 
     function toggleMusic() {
       const audio = document.getElementById('bgMusic');
