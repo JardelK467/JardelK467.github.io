@@ -147,6 +147,45 @@ body {
   color: #666;
 }
 
+/* Project status tags */
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-left: 8px;
+  vertical-align: middle;
+  letter-spacing: 0.01em;
+}
+.status-dot-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.status-tag.in-dev {
+  border: 1px solid #3a3520;
+  color: #c9a227;
+  background: rgba(201, 162, 39, 0.08);
+}
+.status-tag.in-dev .status-dot-indicator {
+  background: #c9a227;
+  box-shadow: 0 0 6px rgba(201, 162, 39, 0.5);
+}
+.status-tag.unpublished {
+  border: 1px solid #1e3a2e;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.08);
+}
+.status-tag.unpublished .status-dot-indicator {
+  background: #34d399;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
+}
+
 .spacer { margin-top: 2.5rem; }
 
 .toggle-row { display: flex; gap: 8px; margin-bottom: 2.5rem; flex-wrap: wrap; }
